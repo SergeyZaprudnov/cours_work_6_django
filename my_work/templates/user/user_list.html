@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'includes/inc_nav.html' %}
+    <body class="bg-light">
+    <main class="container">
+         <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <a class="btn btn-primary" href="{% url 'my_work:user_create' %}">Добавить клиента</a>
+        </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Список клиентов</h6>
+            {% for object in object_list %}
+                {% if object.is_active %}
+                <div class="d-flex text-muted pt-3">
+                    <div class="row mb-6">
+                        <div class="col-6">
+                            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                                <strong class="d-block text-black">{{ object.name }}</strong>
+                                <a class="text"> {{ object.email }}</a>
+                                <br>
+                                <a class="text"> {{ object.comment }}</a>
+                            </p>
+                        </div>
+
+                        <div class="row mb-6">
+                            <div class="col-12">
+                                <a class="btn btn-blue" href="{% url 'my_work:user' object.pk %}">Подробно</a>
+                                <a class="btn btn-danger" href="{% url 'my_work:user_delete' object.pk %}">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <small class="d-block text-end mt-3">
+                    <a href="#">All updates</a>
+                </small>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock %}
