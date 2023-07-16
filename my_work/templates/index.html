@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+
+<section class="cd-slider-wrapper">
+    <ul class="cd-slider">
+        <li class="visible">
+            <div>
+                <h2>Сервис рассылок</h2>
+                <p>Курсовая работа 6</p>
+                <a href="{% url 'servises:main_page' %}" class="cd-btn">Начать</a>
+            </div>
+        </li>
+    </ul> <!-- .cd-slider -->
+</section> <!-- .cd-slider-wrapper -->
+
+{% endblock %}
