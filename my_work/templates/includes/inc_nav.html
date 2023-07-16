@@ -50,7 +50,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'servises:start_page' %}">Главная</a>
+        <a class="navbar-brand" href="{% url 'my_work:start_page' %}">Главная</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
                 aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -62,24 +62,24 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" data-bs-toggle="dropdown">Клиенты</a>
                     <div class="dropdown-content">
-                        <a href="{% url 'servises:clients' %}">Клиенты</a>
-                        <a href="{% url 'servises:client_create' %}">Добавить</a>
+                        <a href="{% url 'my_work:clients' %}">Клиенты</a>
+                        <a href="{% url 'my_work:client_create' %}">Добавить</a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" data-bs-toggle="dropdown">Настройки</a>
                     <div class="dropdown-content">
-                        <a href="{% url 'servises:setting_list' %}">Настройки</a>
-                        <a href="{% url 'servises:setting_create' %}">Добавить</a>
+                        <a href="{% url 'my_work:setting_list' %}">Настройки</a>
+                        <a href="{% url 'my_work:setting_create' %}">Добавить</a>
                     </div>
                 </li>
 
                  <li class="nav-item dropdown">
                     <a class="nav-link active" href="#" data-bs-toggle="dropdown">Сообщения</a>
                     <div class="dropdown-content">
-                        <a href="{% url 'servises:message_list' %}">Сообщения</a>
-                        <a href="{% url 'servises:message_list' %}">Добавить</a>
+                        <a href="{% url 'my_work:message_list' %}">Сообщения</a>
+                        <a href="{% url 'my_work:message_list' %}">Добавить</a>
                     </div>
                 </li>
 
@@ -88,7 +88,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'servises:test_view' %}">ТЕСТ</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'my_work:test_view' %}">ТЕСТ</a>
                 </li>
 
             </ul>
