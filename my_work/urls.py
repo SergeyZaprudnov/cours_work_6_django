@@ -16,4 +16,10 @@ Including another URLconf
 """
 from django.urls import path
 
+from my_work.views import start_page
+
 app_name = 'my_work'
+
+urlpatterns = [
+    path('', start_page, name='start_page'),
+]
