@@ -28,7 +28,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-STANDART_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'course_work_6_django.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
