@@ -6,3 +6,7 @@ def start_page(request):
         'title': 'Стартовая',
     }
     return render(request, 'index.html', context=context)
+
+
+def work_page(requests):
+    return render(requests, 'work_page.html')
