@@ -53,7 +53,7 @@ ROOT_URLCONF = 'course_work_6_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR / 'my_work/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
