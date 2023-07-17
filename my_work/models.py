@@ -10,6 +10,7 @@ class Client(models.Model):  # Модель Клиента
 
     def get_absolute_url(self):
         return reverse('my_work:user', args=[self.pk])
+
     def delete(self, **kwargs):
         self.is_active = False
         self.save()
@@ -22,3 +23,16 @@ class Client(models.Model):  # Модель Клиента
     def __str__(self):
         return f'{self.name}, {self.email}, {self.comment}, {self.is_active}'
 
+
+class Setting(models.Model):
+    class Periodicity(models.TextChoices):
+        EVERY_DAY = 'Раз в день', 'Раз в день'
+        EVERY_WEEK = 'Раз в неделю', 'Раз в неделю'
+        EVERY_MONTH = 'Раз в месяц', 'Раз в месяц'
+
+    class Status(models.TextChoices):
+        CREATED = 'Создана', 'Создана'
+        ACTIVE = 'Активна', 'Активна'
+        ENDING = 'Завершена', 'Завершена'
+
+    mailing_name = models.CharField(max_length=150, verbose_name='Название')
