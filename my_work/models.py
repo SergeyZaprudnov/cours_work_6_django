@@ -72,6 +72,7 @@ class Setting(models.Model):
         return f'{self.mailing_name}, {self.message}, {self.user_name}, {self.date_mailing}, ' \
                f'{self.date_end_mailing}, {self.is_active}, {self.periodicity}, {self.status}'
 
+
 class Messages(models.Model):
     theme = models.CharField(max_length=100, verbose_name='Тема письма')
     body = models.TextField(max_length=600, verbose_name='Текс')
@@ -89,3 +90,18 @@ class Messages(models.Model):
         verbose_name_plural = 'Письма'
         ordering = ['theme']
 
+
+class Logs(models.Model):
+    title = models.CharField(max_length=100, default=str(now), verbose_name='Название')
+    date_last = models.DateTimeField(**NULLABLE, verbose_name='Последняя попытка')
+    status = models.CharField(max_length=50, verbose_name='Статус попытки')
+    answer = models.TextField(max_length=600, default=None, verbose_name='Ответ с сервера')
+    settings = models.ForeignKey(Setting, on_delete=models.DO_NOTHING, verbose_name='Настройка')
+
+    def __str__(self):
+        return f'{self.date_last}, {self.status}, {self.answer}'
+
+    class Meta:
+        verbose_name = 'Лог'
+        verbose_name_plural = 'Логи'
+        ordering = ['-date_last']
