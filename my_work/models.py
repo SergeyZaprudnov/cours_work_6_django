@@ -19,7 +19,7 @@ class Client(models.Model):  # Модель Клиента
         self.save()
 
     class Meta:
-        verbose_name = 'Клиент'
+        verbose_name = 'Клиента'
         verbose_name_plural = 'Клиенты'
         ordering = ['name']
 
@@ -29,6 +29,7 @@ class Client(models.Model):  # Модель Клиента
 
 class Setting(models.Model):
     class Periodicity(models.TextChoices):
+        EVERY_MINUTES = 'Раз в минуту', 'Раз в минуту'
         EVERY_DAY = 'Раз в день', 'Раз в день'
         EVERY_WEEK = 'Раз в неделю', 'Раз в неделю'
         EVERY_MONTH = 'Раз в месяц', 'Раз в месяц'
@@ -53,12 +54,12 @@ class Setting(models.Model):
     status = models.CharField(
         max_length=63,
         choices=Status.choices,
-        default=Status.ENDING,
+        default=Status.CREATED,
         verbose_name='Статус рассылки'
     )
 
     class Meta:
-        verbose_name = 'Настройка'
+        verbose_name = 'Настройку'
         verbose_name_plural = 'Настройки'
 
     def delete(self, **kwargs):
