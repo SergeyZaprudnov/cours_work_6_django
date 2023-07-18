@@ -22,4 +22,4 @@ class MessagesAdmin(admin.ModelAdmin):
 @admin.register(Logs)
 class LogsAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_last', 'status', 'answer')
- #   list_filter = ('settings_mailing_name',)
+   # list_filter = ('settings_mailing_name',)
