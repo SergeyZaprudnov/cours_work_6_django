@@ -71,3 +71,21 @@ class Setting(models.Model):
     def __str__(self):
         return f'{self.mailing_name}, {self.message}, {self.user_name}, {self.date_mailing}, ' \
                f'{self.date_end_mailing}, {self.is_active}, {self.periodicity}, {self.status}'
+
+class Messages(models.Model):
+    theme = models.CharField(max_length=100, verbose_name='Тема письма')
+    body = models.TextField(max_length=600, verbose_name='Текс')
+    is_active = models.BooleanField(default=True, verbose_name='Активность')
+
+    def delete(self, **kwargs):
+        self.is_active = False
+        self.save()
+
+    def __str__(self):
+        return f'{self.theme}, {self.body}'
+
+    class Meta:
+        verbose_name = 'Письмо'
+        verbose_name_plural = 'Письма'
+        ordering = ['theme']
+
