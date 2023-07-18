@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from my_work.form import UserCreateForm
-from my_work.models import Client
+from my_work.models import Client, Setting
 
 
 def start_page(request):
@@ -49,3 +49,8 @@ class UserDeleteView(generic.DeleteView):
     model = Client
     template_name = 'user/user_detail.html'
     success_url = reverse_lazy('my_work:clients')
+
+
+class SettingsListView(generic.ListView):
+    model = Setting
+    template_name = 'settings/setting_list.html'
