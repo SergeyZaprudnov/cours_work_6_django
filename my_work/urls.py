@@ -18,14 +18,10 @@ from django.urls import path
 
 from my_work.views import start_page, work_page, UserListView, UserDetailView, UserCreateView, UserUpdateView, \
     UserDeleteView, SettingsListView, SettingsCreateView, SettingsDetailView, SettingsUpdateView, SettingsDeleteView, \
-    MessageListView, MessageCreateView, MessageDetailView, MessageDeleteView, start_mailing, LogListView
+    MessageListView, MessageCreateView, MessageDetailView, MessageDeleteView, start_mailing, LogListView, \
+    MessageUpdateView
 
 app_name = 'my_work'
-
-
-class MessageUpdateView:
-    pass
-
 
 urlpatterns = [
     path('', start_page, name='start_page'),
@@ -45,7 +41,7 @@ urlpatterns = [
     path('message/', MessageListView.as_view(), name='message_list'),
     path('message/new/', MessageCreateView.as_view(), name='message_create'),
     path('message/<int:pk>/', MessageDetailView.as_view(), name='message_detail'),
-    path('message/update/<int:pk>/', MessageUpdateView, name='message_update'),
+    path('message/update/<int:pk>/', MessageUpdateView.as_view(), name='message_update'),
     path('message/delete/<int:pk>/', MessageDeleteView.as_view(), name='message_delete'),
 
     path('settings/startmailing/<int:pk>/', start_mailing, name='start_mailing'),
