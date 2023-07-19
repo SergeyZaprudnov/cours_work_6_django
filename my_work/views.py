@@ -136,7 +136,8 @@ def start_mailing(request, pk):
     )
 
     a = AutoMail(data)
-    return render(request, 'my_work:a_mail', context=context)
+    return render(request, 'my_work/a_mail.html', context=context)
+
 
 class LogListView(generic.ListView):
     model = Logs
