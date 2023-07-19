@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from my_work.form import UserCreateForm
+from my_work.form import UserCreateForm, SettingCreateForm
 from my_work.models import Client, Setting
 
 
@@ -54,3 +54,45 @@ class UserDeleteView(generic.DeleteView):
 class SettingsListView(generic.ListView):
     model = Setting
     template_name = 'settings/setting_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['data'] = {
+            'status': 'Статус',
+        }
+        return context
+
+
+class SettingsDetailView(generic.DetailView):
+    model = Setting
+    template_name = 'settings/setting_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['names'] = {
+            'status': 'Статус',
+            'start': 'Дата начала рассылки',
+            'end': 'Дата окончания рассылки',
+            'periodicity': 'Периодичность'
+        }
+        return context
+
+
+class SettingsCreateView(generic.CreateView):
+    model = Setting
+    template_name = 'settings/setting_create.html'
+    form_class = SettingCreateForm
+    success_url = reverse_lazy('my_work:setting_list')
+
+
+class SettingsUpdateView(generic.UpdateView):
+    model = Setting
+    template_name = 'settings/setting_create.html'
+    form_class = SettingCreateForm
+    success_url = reverse_lazy('my_work:setting_list')
+
+class SettingsDeleteView(generic.DeleteView):
+    model = Setting
+    template_name = 'settings/setting_delete.html'
+    success_url = reverse_lazy('my_work:setting_list')
+
