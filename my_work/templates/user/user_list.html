@@ -27,13 +27,15 @@
                         <div class="row mb-6">
                             <div class="col-12">
                                 <a class="btn btn-blue" href="{% url 'my_work:client' object.pk %}">Подробно</a>
-                                <a class="btn btn-danger" href="{% url 'my_work:user_delete' object.pk %}">Удалить</a>
+                                {% if object.creator == user %}
+                                    <a class="btn btn-danger" href="{% url 'my_work:user_delete' object.pk %}">Удалить</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <small class="d-block text-end mt-3">
-                    <a href="#">All updates</a>
+                    <a href="#">Менеджер {{ object.creator }}</a>
                 </small>
                 {% endif %}
             {% endfor %}
