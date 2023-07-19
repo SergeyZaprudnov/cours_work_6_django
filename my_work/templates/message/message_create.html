@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content %}
+    {% include 'includes/inc_nav.html' %}
+    <main class="container">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <div class="d-flex text-muted pt-3">
+                <div class="row mb-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        {% if object %}
+                            <input type="submit" class="btn btn-success" value="Изменить">
+                        {% else %}
+                            <input type="submit" class="btn btn-success" value="Добавить">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
