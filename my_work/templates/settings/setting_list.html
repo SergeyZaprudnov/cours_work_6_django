@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+
+{% block content %}
+
+    {% include 'includes/inc_nav.html' %}
+    <body class="bg-light">
+    <main class="container">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <a class="btn btn-primary" href="{% url 'my_work:setting_create' %}">Добавить рассылку</a>
+        </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Список рассылок</h6>
+            {% for object in object_list %}
+                {% if object.is_active %}
+                    <div class="d-flex text-muted pt-3">
+                        <div class="row mb-6">
+                            <div class="col-6">
+                                <p class="pb-3 mb-0 small lh-sm border-bottom">
+                                    <strong class="d-block text-black">{{ object.mailing_name }}</strong>
+                                    <a class="text">{{ data.status }}: {{ object.status }}</a><br>
+                            </div>
+                            <div class="row mb-6">
+                                <div class="col-12">
+                                    <a class="btn btn-blue" href="{% url 'my_work:setting_detail' object.pk %}">Подробно</a>
+                                    <a class="btn btn-danger" href="{% url 'my_work:setting_detail' object.pk %}">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="d-block text-end mt-3">
+                        <a href="#">Менеджер {{ object.creator }}</a>
+                    </small>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock %}
