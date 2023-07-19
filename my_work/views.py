@@ -5,6 +5,7 @@ from django.views import generic
 
 from my_work.form import UserCreateForm, SettingCreateForm, MessageCreateForm
 from my_work.models import Client, Setting, Messages, Logs
+from my_work.utils.utils import AutoMail
 
 
 def start_page(request):
