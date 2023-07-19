@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.timezone import now
@@ -113,8 +114,15 @@ class MessageDetailView(generic.DetailView):
 class MessageCreateView(generic.CreateView):
     model = Messages
     template_name = 'message/message_create.html'
-    form_class = MessageCreateForm
     success_url = reverse_lazy('my_work:message_list')
+    form_class = MessageCreateForm
+
+
+class MessageUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Messages
+    template_name = 'message/message_create.html'
+    success_url = reverse_lazy('my_work:message_list')
+    form_class = MessageCreateForm
 
 
 class MessageDeleteView(generic.DeleteView):
