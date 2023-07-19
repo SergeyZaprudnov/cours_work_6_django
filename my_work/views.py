@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required, login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -30,12 +31,12 @@ class UserListView(ListView):
     template_name = 'user/user_list.html'
 
 
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = Client
     template_name = 'user/user_detail.html'
 
 
-class UserCreateView(CreateView):
+class UserCreateView(LoginRequiredMixin, CreateView):
     model = Client
     template_name = 'user/user_create.html'
     form_class = UserCreateForm
@@ -48,20 +49,20 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     template_name = 'user/user_create.html'
     form_class = UserCreateForm
     success_url = reverse_lazy('my_work:clients')
 
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
     template_name = 'user/user_detail.html'
-    success_url = reverse_lazy('my_work:user_list')
+    success_url = reverse_lazy('my_work:clients')
 
 
-class SettingsListView(ListView):
+class SettingsListView(LoginRequiredMixin, ListView):
     model = Setting
     template_name = 'settings/setting_list.html'
 
@@ -73,7 +74,7 @@ class SettingsListView(ListView):
         return context
 
 
-class SettingsDetailView(DetailView):
+class SettingsDetailView(LoginRequiredMixin, DetailView):
     model = Setting
     template_name = 'settings/setting_detail.html'
 
@@ -88,37 +89,37 @@ class SettingsDetailView(DetailView):
         return context
 
 
-class SettingsCreateView(CreateView):
+class SettingsCreateView(LoginRequiredMixin, CreateView):
     model = Setting
     template_name = 'settings/setting_create.html'
     form_class = SettingCreateForm
     success_url = reverse_lazy('my_work:setting_list')
 
 
-class SettingsUpdateView(UpdateView):
+class SettingsUpdateView(LoginRequiredMixin, UpdateView):
     model = Setting
     template_name = 'settings/setting_create.html'
     form_class = SettingCreateForm
     success_url = reverse_lazy('my_work:setting_list')
 
 
-class SettingsDeleteView(DeleteView):
+class SettingsDeleteView(LoginRequiredMixin, DeleteView):
     model = Setting
     template_name = 'settings/setting_delete.html'
     success_url = reverse_lazy('my_work:setting_list')
 
 
-class MessageListView(ListView):
+class MessageListView(LoginRequiredMixin, ListView):
     model = Messages
     template_name = 'message/message_list.html'
 
 
-class MessageDetailView(DetailView):
+class MessageDetailView(LoginRequiredMixin, DetailView):
     model = Messages
     template_name = 'message/message_detail.html'
 
 
-class MessageCreateView(CreateView):
+class MessageCreateView(LoginRequiredMixin, CreateView):
     model = Messages
     template_name = 'message/message_create.html'
     success_url = reverse_lazy('my_work:message_list')
@@ -132,7 +133,7 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     form_class = MessageCreateForm
 
 
-class MessageDeleteView(DeleteView):
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = Messages
     template_name = 'message/message_delete.html'
     success_url = reverse_lazy('my_work:message_list')
@@ -154,6 +155,6 @@ def start_mailing(request, pk):
     return render(request, 'my_work/a_mail.html', context=context)
 
 
-class LogListView(ListView):
+class LogListView(LoginRequiredMixin, ListView):
     model = Logs
     template_name = 'log.html'
