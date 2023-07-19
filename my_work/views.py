@@ -41,6 +41,12 @@ class UserCreateView(CreateView):
     form_class = UserCreateForm
     success_url = reverse_lazy('my_work:clients')
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.creator = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class UserUpdateView(UpdateView):
     model = Client
@@ -52,7 +58,7 @@ class UserUpdateView(UpdateView):
 class UserDeleteView(DeleteView):
     model = Client
     template_name = 'user/user_detail.html'
-    success_url = reverse_lazy('my_work:clients')
+    success_url = reverse_lazy('my_work:user_list')
 
 
 class SettingsListView(ListView):
